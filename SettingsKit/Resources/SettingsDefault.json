@@ -1,0 +1,53 @@
+[
+ {
+   "id": "general",
+   "title": "General",
+   "items": [
+       {
+          "id": "share_app",
+          "type": "action",
+          "title": "Share with friends",
+          "isShown": true,
+       },
+       {
+          "id": "rate_app",
+          "type": "action",
+          "title": "Rate us in the AppStore",
+          "detail": "Your ratings and reviews will help us reach more people",
+          "isShown": true,
+       },
+       {
+          "id": "contact_developer",
+          "type": "page",
+          "title": "Contact the developer",
+          "url": "https://wa.me/77765206766",
+          "isShown": true,
+       },
+       {
+          "id": "support_app",
+          "type": "action",
+          "title": "Donate to the project",
+          "isShown": true,
+       },
+       {
+          "id": "notification",
+          "type": "view",
+          "title": "Notifications",
+          "isShown": true,
+       }
+    ],
+ },
+ {
+   "id": "ioserler",
+   "title": "iOSerler Developers",
+   "items": [
+       {
+          "id": "ioserler",
+          "type": "page",
+          "title": "iOSerler",
+          "url": "https://github.com/orgs/iOSerler/repositories",
+          "isShown": true,
+       },
+    ],
+ },
+]

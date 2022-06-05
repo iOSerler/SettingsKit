@@ -9,7 +9,7 @@ This is a static library that helps to build settings page quickly. Features tha
 
 
 ## Installation
-Add to Podfile
+Add to Podfile. 
 
 ```
 use frameworks!
@@ -21,10 +21,10 @@ pod 'SettingsKit', :git => 'https://github.com/iOSerler/SettingsKit', :branch =>
 
 
 ## Usage
-Create an object of **SettingsBuilder**2
-Then push *settingsView*, property of the SettingsBuilder, to the *navigationController*
+Create an object of **SettingsBuilder**.
+Then push *settingsView*, property of the SettingsBuilder, to the *navigationController*.
 
-If you pass *nil* to all parameters SettingsBuilder will use *Default* configurations
+If you pass *nil* to all parameters SettingsBuilder will use *Default* configurations.
 For example:
 
 ```

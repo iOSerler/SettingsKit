@@ -3,8 +3,8 @@
 This is a static library that helps to build settings page quickly. Features that can be included into the settings page: 
  - Request a review in App Store
  - Share with others
- - Donation to an app   (with DonationKit)
- - Local notifications  (with NotificationKit)
+ - Donation to an app   (with [DonationKit](https://github.com/iOSerler/DonationKit))
+ - Local notifications  (with [NotificationKit](https://github.com/iOSerler/NotificationKit))
  - Open any webpage
 
 

@@ -45,13 +45,17 @@ self.navigationController?.pushViewController(settingsPage.settingsView, animate
 To use DonationKit you need to do several steps:
 1. Create **StoreKit Configuration File**. 
 <img src="Images/storeKit.png" width="500">
+
 2. Open created file and click the "+" button to add in-app purchase.
 <img src="Images/storeKitAdd.png" width="500">
+
 3. Then set configurations
 <img src="Images/storeKitConfig.png" width="500">
+
 4. Product -> Scheme -> Edit Scheme. And for the **StoreKit Configuration** set your configuration file.
 <img src="Images/storeKitScheme.png" width="500">
-5. Add extension to your ViewController with function **openDonateProposition()**
+
+5. Add extension to your ViewController with function **openDonateProposition()**.
 
 ```
 extension ViewController: SettingsViewDelegate {

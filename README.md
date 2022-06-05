@@ -43,5 +43,5 @@ self.navigationController?.pushViewController(settingsPage.settingsView, animate
 <!-- ![title](Images/example.png) -->
 
 
-![Default features](Images/features.png)
+![Default features](Images/features.png){ height=25% }
 

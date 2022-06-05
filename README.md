@@ -19,16 +19,69 @@ pod 'DonationKit', :git => 'https://github.com/iOSerler/DonationKit', :branch =>
 pod 'SettingsKit', :git => 'https://github.com/iOSerler/SettingsKit', :branch => 'main'
 ```
 
-### Quick instruction for beginners in pod
-First of all close the Xcode
 
-If you do not have Podfile
-- Need to create Podfile in the project folder. Run:
-```pod init```
-- Add the code above
-- Then run:
-```pod install```
-- Then open .xcworkspace, with white icon, that has been created
+## Usage
+Create an object of **SettingsBuilder**2
+Then push *settingsView*, property of the SettingsBuilder, to the *navigationController*
+
+If you pass *nil* to all parameters SettingsBuilder will use *Default* configurations
+For example:
+
+```
+let settingsPage = SettingsBuilder(
+        analytics: nil,
+        settingsSections: nil,
+        notificationControlPanel: nil,
+        notificationLocalSchedule: nil,
+        settingsStyleConfigurable: nil
+    )
+
+self.navigationController?.pushViewController(settingsPage.settingsView, animated: true)
+```
+<!-- ![title](Images/example.png) -->
+
+
+
+### Analytics
+This parameter accepts *SettingsAnalytics*.
+This is a protocol and the passed object should conform to it. For example:
+```
+struct Analytics: SettingsAnalytics{
+    func logEvent(_ eventName: String, properties: [String:Any]?){
+        ...
+    }
+    
+    func setUserProperty(_ property: String, value: Any){
+        ...
+    }
+}
+```
+If your settings page includes NotificationKit and DonationKit, The object should conform to protocol of [NotificationKit](https://github.com/iOSerler/NotificationKit) and [DonationKit](https://github.com/iOSerler/DonationKit). For example:
+```
+struct Analytics: SettingsAnalytics, NotificationKit.GenericAnalytics, DonationKit.AbstractAnalytics{
+    func logEvent(_ eventName: String, properties: [String:Any]?){
+        ...
+    }
+    
+    func setUserProperty(_ property: String, value: Any){
+        ...
+    }
+}
+```
+Basically this are the same protocols, but with different namings.
+
+
+### SettingsSections
+This parameter accepts array of *SettingsSection*
+It is a protocol that conforms to *Decoable*. Example of the implementation can be found in **Model.swift** and in **StorageService.swift**. Since it is a *Decoadable*, it can be implemented with **Json**
+
+
+
+<!-- [Link text Here](https://link-url-here.org) -->
+
+
+
+
 
 
 

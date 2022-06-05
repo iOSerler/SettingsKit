@@ -7,8 +7,9 @@ This is a static library that helps to build settings page quickly. Features tha
  - Local notifications  (with [NotificationKit](https://github.com/iOSerler/NotificationKit))
  - Open any webpage
 
- ![Default Features](./Images/defaultFeatures.png){:height="124px" width="268px"}.
-
+<div style="width:26px ; height:12px">
+ ![Default Features](./Images/defaultFeatures.png)
+<div>
 
 ## Installation
 Add to Podfile. 

@@ -40,10 +40,7 @@ let settingsPage = SettingsBuilder(
 
 self.navigationController?.pushViewController(settingsPage.settingsView, animated: true)
 ```
-<!-- ![title](Images/example.png) -->
+<img src="Images/features.png" width="500">
 
 
-<!-- ![Default features](Images/features.png){ height=25% } -->
 
-
-<img src="Images/features.png" width="200">

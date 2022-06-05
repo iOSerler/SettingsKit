@@ -52,6 +52,7 @@ To use DonationKit you need to do several steps:
 4. Product -> Scheme -> Edit Scheme. And for the **StoreKit Configuration** set your configuration file.
 <img src="Images/storeKitScheme.png" width="500">
 5. Add extension to your ViewController with function **openDonateProposition()**
+
 ```
 extension ViewController: SettingsViewDelegate {
     func openDonateProposition() {
@@ -72,6 +73,7 @@ extension ViewController: SettingsViewDelegate {
     }
 }
 ```
+
 **openDonateProposition()** creates **PurchaseBuilder** object.  **purchasheProductIdentifiers** accepts an array with **product ID**s of your purchase items.
 
 

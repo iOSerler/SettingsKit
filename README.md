@@ -44,7 +44,7 @@ self.navigationController?.pushViewController(settingsPage.settingsView, animate
 
 To use DonationKit you need to do several steps:
 1. Create **StoreKit Configuration File**. 
-<img src="Images/storeKit.png" width="200">
+<img src="Images/storeKit.png" width="500">
 
 
 

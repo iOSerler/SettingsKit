@@ -49,6 +49,30 @@ To use DonationKit you need to do several steps:
 <img src="Images/storeKitAdd.png" width="500">
 3. Then set configurations
 <img src="Images/storeKitConfig.png" width="500">
+4. Product -> Scheme -> Edit Scheme. And for the **StoreKit Configuration** set your configuration file.
+<img src="Images/storeKitScheme.png" width="500">
+5. Add extension to your ViewController with function **openDonateProposition()**
+```
+extension ViewController: SettingsViewDelegate {
+    func openDonateProposition() {
+        //create purchaseBuilder
+        let purchaseBuilder = PurchaseBuilder(
+            analytics: nil,
+            purchaseProductIdentifiers: [
+                "com.temporary.id.099",
+                "com.temporary.id.299",
+                "com.temporary.id.1599"
+            ],
+            config: nil
+        )
+        
+        //push to the navigationController
+        self.navigationController?.pushViewController(purchaseBuilder.view as! UIViewController, animated: true)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+}
+```
+**openDonateProposition()** creates **PurchaseBuilder** object.  **purchasheProductIdentifiers** accepts an array with **product ID**s of your purchase items.
 
 
 

@@ -1,10 +1,13 @@
 # SettingsKit
 
-This is a static library that helps to build settings page quickly. Features that can be included into the settings page: 
+This is a static library that helps you add an out-of-the-box Settings page to your app. 
+
+## Features
+Features that can be included into the settings page: 
  - Request a review in App Store
- - Share with others
- - Donation to an app   (with [DonationKit](https://github.com/iOSerler/DonationKit))
- - Local notifications  (with [NotificationKit](https://github.com/iOSerler/NotificationKit))
+ - Share your app with others
+ - Donate to the app screen  (with [DonationKit](https://github.com/iOSerler/DonationKit))
+ - Local notifications (with [NotificationKit](https://github.com/iOSerler/NotificationKit))
  - Open any webpage
 
  <!-- ![Default Features](./Images/defaultFeatures.png) -->

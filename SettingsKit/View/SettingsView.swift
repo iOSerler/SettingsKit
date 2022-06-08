@@ -173,6 +173,14 @@ public final class SettingsView: UIViewController {
         }
     }
     
+    public func addSections(sections: [SettingsSection]) {
+        for section in sections {
+            if !settingsSections.contains(where: {$0.id == section.id}) {
+                settingsSections.append(section)
+            }
+        }
+        tableView.reloadData()
+    }
 }
 
 

@@ -5,7 +5,7 @@ import Foundation
 import NotificationKit
 
 
-public protocol SettingsViewDelegate: AnyObject {
+public protocol SettingsViewDelegate {
     func openDonateProposition()
 }
 

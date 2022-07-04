@@ -34,15 +34,11 @@ public final class SettingsView: UIViewController {
         
         tableView.estimatedRowHeight = Constants.estimatedRowHeight
         tableView.showsVerticalScrollIndicator = false
-        tableView.backgroundColor = self.settingsStyleConfigurable.pageBackgroundColor
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(SettingsCell.self, forCellReuseIdentifier: settingsStyleConfigurable.reusableCellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: settingsStyleConfigurable.reusableCellIdentifier)
         return tableView
     }()
-    
-
-    
     
     init(
         settingsSections: [SettingsSection],
@@ -69,7 +65,6 @@ public final class SettingsView: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = settingsStyleConfigurable.pageBackgroundColor
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         view.addSubview(tableView)
         applyConstraints()
@@ -79,21 +74,17 @@ public final class SettingsView: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadData()
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.isToolbarHidden = true
     }
     
     
     private func applyConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-    
     
     func reloadData() {
         settingsSections = settingsSections.map { sectionConstant in
@@ -109,10 +100,9 @@ public final class SettingsView: UIViewController {
     }
     
     func shareApp() {
-        let urlString = "appUrl"
-        let text = "messageToShare" + urlString
+        let urlString = "https://apple.co/39pI1kl"
         
-        let alert = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        let alert = UIActivityViewController(activityItems: [urlString], applicationActivities: nil)
         
         // if we're on iPad there is nowhere sensible to anchor this from, so just center it
         if let popOver = alert.popoverPresentationController {
@@ -135,15 +125,6 @@ public final class SettingsView: UIViewController {
         
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
-    }
-    
-    func openArticle(_ settingsItem: SettingsItem) {
-        guard let urlString = settingsItem.url, let _ = URL(string: urlString) else { return }
-        
-        let webVC = WebController()
-        webVC.urlString = urlString
-        webVC.title = settingsItem.title
-        self.navigationController?.pushViewController(webVC, animated: true)
     }
     
     func openNotificationPanel() {
@@ -183,21 +164,14 @@ public final class SettingsView: UIViewController {
     }
 }
 
-
-
-
-
-
 extension SettingsView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = settingsSections[indexPath.section]
         let item = section.items[indexPath.row]
         
         switch (item.id, item.type) {
-        case (_, "page"):
+        case (_, "page"), (_, "article"):
             openWebPage(item)
-        case (_, "article"):
-            openArticle(item)
         case ("share_app",_):
             shareApp()
         case ("support_app",_):
@@ -213,19 +187,9 @@ extension SettingsView: UITableViewDelegate {
 }
 
 
-
-
-
 extension SettingsView: UITableViewDataSource {
     
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return settingsStyleConfigurable.rowHeight
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return settingsStyleConfigurable.headerHeight
-    }
-    
+   
     public func numberOfSections(in tableView: UITableView) -> Int {
         return self.settingsSections.count
     }
@@ -234,18 +198,8 @@ extension SettingsView: UITableViewDataSource {
         return self.settingsSections[section].items.count
     }
     
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: settingsStyleConfigurable.headerHeight))
-        headerView.backgroundColor = settingsStyleConfigurable.headerBackgroundColor
-
-        let label = UILabel(frame: CGRect(x: 16, y: 0, width: view.bounds.width-20, height: settingsStyleConfigurable.headerHeight))
-        label.text = settingsSections[section].title
-        label.textColor = settingsStyleConfigurable.headerTextColor
-        label.font = settingsStyleConfigurable.headerFont
-        label.numberOfLines = 0
-        headerView.addSubview(label)
-
-        return headerView
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        settingsSections[section].title
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -253,16 +207,12 @@ extension SettingsView: UITableViewDataSource {
         let section = settingsSections[indexPath.section]
         let item = section.items[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: settingsStyleConfigurable.reusableCellIdentifier, for: indexPath) as! SettingsCell
-        cell.rowHeight = settingsStyleConfigurable.rowHeight
-        cell.titleLabel.font = settingsStyleConfigurable.rowFont
-        cell.titleLabel.text = item.title
-        cell.titleBackgroundView.backgroundColor = settingsStyleConfigurable.rowBackgroundColor
+        let cell = tableView.dequeueReusableCell(withIdentifier: settingsStyleConfigurable.reusableCellIdentifier, for: indexPath)
+        cell.textLabel?.text = item.title
+        cell.textLabel?.numberOfLines = 0
+        cell.selectionStyle = .none
+        cell.accessoryType = .disclosureIndicator
         return cell
-        
-        /// FIXME: add detail
-//        cell.detailTextLabel?.text = item.detail
-        
         
     }
 }
